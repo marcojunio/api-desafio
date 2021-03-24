@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>backend_repository</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\backend.domain\backend.domain.csproj" />
+    <ProjectReference Include="..\backend.infra\backend.infra.csproj" />
+  </ItemGroup>
+
+</Project>
