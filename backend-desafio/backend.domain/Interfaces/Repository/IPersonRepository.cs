@@ -9,6 +9,6 @@ namespace backend.domain.Interfaces.Repository
 {
     public interface IPersonRepository : IRepository<Person>
     {
-
+        IEnumerable<Person> GetPeopleFromState(string uf);
     }
 }

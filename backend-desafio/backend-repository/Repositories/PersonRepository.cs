@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace backend_repository.Repositories
 {
-    public class PersonRepository : IRepository<Person>
+    public class PersonRepository : IPersonRepository
     {
         private readonly PersonDbContext _dbContext;
         

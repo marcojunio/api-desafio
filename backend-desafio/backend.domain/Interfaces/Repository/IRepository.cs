@@ -13,5 +13,6 @@ namespace backend.domain.Interfaces.Repository
         void Delete(int code);
         IEnumerable<TEntity>All();
         TEntity FindByCode(int code);
+        bool CodeExits(int code);
     }
 }

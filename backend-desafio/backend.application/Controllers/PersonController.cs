@@ -1,6 +1,8 @@
-﻿using backend.domain.Entities;
+﻿using backend.application.Services;
+using backend.domain.Entities;
 using backend.infra.Context;
 using backend_repository.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -23,6 +25,7 @@ namespace backend.application.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult<Person> InsertPerson(Person person)
         {
             if (person == null || person.isValid().Equals(false))
@@ -36,6 +39,7 @@ namespace backend.application.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult<IEnumerable<Person>> GetAllPeople()
         {
             var people = personRepository.All();
@@ -44,6 +48,7 @@ namespace backend.application.Controllers
         }
 
         [HttpGet("{code}")]
+        [Authorize]
         public ActionResult<Person> GetPersonByCode(int code)
         {
             var people = personRepository.FindByCode(code);
@@ -57,6 +62,7 @@ namespace backend.application.Controllers
         }
 
         [HttpGet("state/{uf}")]
+        [Authorize]
         public ActionResult<IEnumerable<Person>> GetPersonByState(string uf)
         {
             var people = personRepository.GetPeopleFromState(uf);
@@ -70,6 +76,7 @@ namespace backend.application.Controllers
         }
 
         [HttpDelete("{code}")]
+        [Authorize]
         public ActionResult<Person> DeletePerson(int code)
         {
             personRepository.Delete(code);
@@ -78,6 +85,7 @@ namespace backend.application.Controllers
         }
 
         [HttpPut("{code}")]
+        [Authorize]
         public ActionResult<Person> UpdatePerson(Person person, int code)
         {
             if(code != person.Code)

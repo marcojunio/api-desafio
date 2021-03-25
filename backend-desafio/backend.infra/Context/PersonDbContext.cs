@@ -13,6 +13,7 @@ namespace backend.infra.Context
     {
         public PersonDbContext(DbContextOptions<PersonDbContext> options) : base(options) { }
 
+        public DbSet<User> Users { get; set; }
         public DbSet<Person> People { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
