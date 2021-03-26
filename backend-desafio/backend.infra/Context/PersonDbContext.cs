@@ -19,6 +19,7 @@ namespace backend.infra.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new PersonMap());
+            modelBuilder.ApplyConfiguration(new UserMap());
         }
     }
 }

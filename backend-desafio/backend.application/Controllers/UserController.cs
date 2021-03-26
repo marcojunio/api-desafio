@@ -11,9 +11,11 @@ using System.Threading.Tasks;
 
 namespace backend.application.Controllers
 {
+    [Route("api/user")]
+    [ApiController]
     public class UserController : ControllerBase
     {
-        private UserRepository userRepository;
+        private readonly UserRepository userRepository;
         private readonly PersonDbContext dbContext;
         public UserController(PersonDbContext context)
         {
@@ -24,7 +26,7 @@ namespace backend.application.Controllers
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
-        public async Task<ActionResult<dynamic>> Authenticate([FromBody] User model)
+        public ActionResult<dynamic> Authenticate([FromBody] User model)
         {
             var user = userRepository.Get(model.Password, model.Username);
 
@@ -42,7 +44,7 @@ namespace backend.application.Controllers
 
         [HttpPost]
         [Route("register")]
-        public ActionResult<Person> RegisterUser([FromBody] User user)
+        public ActionResult<Person> RegisterUser(User user)
         {
             
             if(user != null)

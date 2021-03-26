@@ -15,7 +15,7 @@ namespace backend.application.Controllers
     [ApiController]
     public class PersonController : ControllerBase
     {
-        private  PersonRepository personRepository;
+        private readonly PersonRepository personRepository;
         private readonly PersonDbContext dbContext;
 
         public PersonController(PersonDbContext context)
@@ -29,9 +29,7 @@ namespace backend.application.Controllers
         public ActionResult<Person> InsertPerson(Person person)
         {
             if (person == null || person.isValid().Equals(false))
-            {
                 return BadRequest();
-            }
 
             personRepository.Add(person);
 
@@ -54,9 +52,7 @@ namespace backend.application.Controllers
             var people = personRepository.FindByCode(code);
 
             if(people == null)
-            {
                 return NotFound();
-            }
 
             return Ok(people);
         }
@@ -68,9 +64,7 @@ namespace backend.application.Controllers
             var people = personRepository.GetPeopleFromState(uf);
 
             if(people == null)
-            {
                 return NotFound();
-            }
 
             return Ok(people);
         }
@@ -89,14 +83,10 @@ namespace backend.application.Controllers
         public ActionResult<Person> UpdatePerson(Person person, int code)
         {
             if(code != person.Code)
-            {
                 return BadRequest();
-            }
 
             if (!personRepository.CodeExits(code)) 
-            {
                 return NotFound();
-            }
 
             personRepository.Update(person, code);
 
